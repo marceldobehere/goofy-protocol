@@ -112,9 +112,25 @@ A
 A
 
 ### Handle
-A
+A string that is tied to a publickey / keypair of an identity.
+
+The handle can be used to identify a user and to retrieve the public key of from one, to verify signatures.
+
+Handles have the following format:
+
+`[word]_[word]_[word]_[word][value between 0 and 999]`
+
+There can be 2-4 words in a handle separated by underscores.
+
+An example would be `holts_plesh_boaty798`
 
 
+Normally handles do/should not require a domain (with certain exceptions like newly registering, migrating, etc.). If they do have a domain tied it will have this format:
+
+`handle@domain.tld` / `[word]_[word]_[word]_[word][value between 0 and 999]@[domain]`
+
+
+Handles are tied to a public key and unique, which means that a handle (basically) always points to a singular identity which is nice, because that means the identity isnt really tied to an IDP / domain. 
 
 
 ## Structures
@@ -133,7 +149,7 @@ A
 ## Other things
 
 ### Handle generation
-More Info [here](./handles.md).
+More Info [here](./details/handles.md).
 
 ### Crypto Details
 
@@ -141,7 +157,19 @@ More Info [here](./handles.md).
 ### Migrating an IDP
 
 
-## Service Specs
+## Component Specs
 
-* [Goofy Chat (v3)](./goofy_chat.md) A decentralized E2EE Chat App
-* [Goofy Media (v2)](./goofy_media.md) A decentralized & secure text-based Social Media
+* [IDP Specs](./specs/idp.md)
+* [Minimum Service Specs](./specs/min_services.md)
+* [User related Specs](./specs/user_stuff.md)
+
+
+
+## Example Service Specs
+
+* [Goofy Chat (v3)](./services/goofy_chat.md) A decentralized E2EE Chat App
+* [Goofy Media (v2)](./services/goofy_media.md) A decentralized & secure text-based Social Media
+
+
+## Implementation Examples
+Examples for important parts can be found [here](./code_examples/java/). They will mainly be in Java for now, later also Javascript with corresponding Libraries/APIs.
