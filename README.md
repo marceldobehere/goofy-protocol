@@ -1,4 +1,4 @@
-# Goofy Protocol
+# Goofy Protocol (WIP)
 A silly protocol / architecure spec to make goofy decentralized and federated systems kinda.
 
 
@@ -140,3 +140,8 @@ More Info [here](./handles.md).
 
 ### Migrating an IDP
 
+
+## Service Specs
+
+* [Goofy Chat (v3)](./goofy_chat.md) A decentralized E2EE Chat App
+* [Goofy Media (v2)](./goofy_media.md) A decentralized & secure text-based Social Media
