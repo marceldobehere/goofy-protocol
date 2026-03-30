@@ -52,6 +52,8 @@ These are still very WIP.
       - [Get Table](#get-table)
       - [Create Table](#create-table)
       - [Delete Table](#delete-table)
+      - [Locking a Table](#locking-a-table)
+      - [Unlocking a Table](#unlocking-a-table)
       - [Get Table Entries](#get-table-entries)
       - [Add Table Entry](#add-table-entry)
       - [Update Table Entry](#update-table-entry)
@@ -214,6 +216,7 @@ Public Data for example should include a `services` key which has an object with
 
 
 ### Service Entry Configuration
+Creating an entry which contains tables and buckets that can be accessed by a service using a handle. This should also support multiple handles having access to an entry. Should be differentiated between read-only and read/write.
 
 #### Get Service Entries for Handle
 
@@ -224,6 +227,7 @@ Public Data for example should include a `services` key which has an object with
 #### Update Service Entry
 Set Quotas for Storage and maybe Table count
 Two distinct quotas, binary content and table data!
+Also updating access levels per handle
 
 #### Delete Service Entry
 
@@ -281,6 +285,19 @@ Define Colums
 
 #### Delete Table
 
+
+#### Locking a Table
+If several entities are trying to access a table at the same time, it could cause issues, that is why you can lock a table for everyone but you. 
+
+You can set the lock to be write only or read write depending on your needs. You also will have to add a duration to lock the table for. 
+
+Tables can and should of course be unlocked early but should have a timeout to avoid possible race conditions. The timeout should have an upper bound, of for example 15-30s which should be clearly documented.
+
+Locking a table will return a lock token if successful and the other endpoints will be locked, unless you provide the lock token in the headers.
+
+
+#### Unlocking a Table
+Unlocking a table can only be done by having the lock token. Otherwise it will unlock automatically after the timeout.
 
 
 #### Get Table Entries
@@ -494,3 +511,7 @@ Backup related things
 If IDPs get large there should be some moderation users with some kind of abilities but not quite administrators.
 
 Maybe include rate limiting suggestions for the endpoints
+
+Look into synchronised code blocks / locking table accesses to avoid weird issues
+
+Look into locking Buckets maybe?

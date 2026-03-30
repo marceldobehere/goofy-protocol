@@ -7,7 +7,11 @@ Handles will be generated based on the public key.
 Similar to how its done in https://github.com/marceldobehere/goofy-media-front/blob/master/src/lib/cryptoUtils.js
 
 
+HANDLES and the corresponding Public Keys should always be **cached**, as the handle takes a bit to compute. You should not trust handles and public keys from other services and always check them yourself, if its correct then you can cache it.
+
+
 Some Basic Example Code for now (using CryptoJS) (stolen and slightly modified from Goofy Media)
+
 
 This code will be optimized and available for to be done async in JS, using the window.crypto API, but thats not too important rn
 ```javascript

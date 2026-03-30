@@ -14,9 +14,71 @@ And once I got some actual code I will link the repositories and host some insta
 
 But this all will take quite a while. (Writing the specs and outline alone takes ages)
 
+
+
+## What is this Spec/Protocol For?
+Basically I was looking into having end to end encryption and validation of data without needing trust. For example being able to exchange secret keys without needing to trust a server to provide the correct public key or reading a social media post and being able to verify that the user actually posted it.
+
+
+### Base Issues
+This mapping of username -> Public Key needs trust (well there are things using blockchains and stuff but i want it simpler) so evil servers could misuse it.
+
+Also for social media most posts are just stored on the server but not signed and its not really laid out to include signatures in the posts since even with security keys and stuff they can still be replaced by an evil server and just signed with a custom one. 
+
+I want to get rid of this trust and also make it so that there is a framework for having accounts where you can sign the content easily and verify it.
+
+
+### Concept
+To get rid of the trust I am make usernames be handles instead and the handles are based on the public key, just like a short SHA fingerprint of a public key but in a human readable and memorizable format. This handle should be easy to read, remember but also be reasonably secure to not be brute forced.
+
+So now when you share your handle with other people they can request for the public key, **verify it** and then verify whatever things you post or securely exchange keys.
+
+This handle based system also has some interesting implications when it comes to auth and API access as you don't really need sessions anymore and can just sign every request you do with a server, as only you have access to the complete keypair.
+
+
+### Issues with my current systems
+I have implemented this system with Goofy Chat and Goofy Media, but there have been a few issues with it.
+
+**Handles / Usernames**
+
+Goofy Chat has a different way to generate handles than Goofy Media and i haven't made a standard for it, which makes it hard to combine several platforms. Additionally its only using JS for now and using libraries which make it a pain to port it elsewhere cleanly.
+
+
+**IDP / Account management**
+
+Every service needs to have its own account management and keystorage and they can behave differently have different APIs and for example Goofy Chat doesn't have it at all.
+
+
+**Data Storage**
+
+Data Storage is a pain because either the server needs to store everything like in Goofy Media or in Goofy Chat the clients need to store everything which makes synchronisation a nighmare.
+
+Additionally the Data Storage is a reason that I have not allowed native image and media upload to Goofy Media and only allow linked media. Having each person be responsible for their own data would be much better.
+
+**Synchronisation**
+
+Goofy Chat 2 allowed for several clients to exist and synchronise messages. This was horrendous to implement and is still a bit buggy. This is because some clients can be offline, sometimes several can be online at the same time and there can be large messages being transferred. Having one place for each user (ideally in a trusted server) would make this a lot easier and nicer.
+
+
+**Federation of Services**
+
+In general different services using this architecture arent easy to federate or combine with their implementations of the handle system, account management and in general all the APIs being so different. 
+
+I want federation and communication between different services or services with different IDPs to work and be easily possible.
+
+Additionally I want to lay out some specs so that there can be independent implementation that can still work together and have the important things standardized & have examples.
+
+
+
+
+
 # Table of Contents
 - [Goofy Protocol (WIP)](#goofy-protocol-wip)
   - [Notes](#notes)
+  - [What is this Spec/Protocol For?](#what-is-this-specprotocol-for)
+    - [Base Issues](#base-issues)
+    - [Concept](#concept)
+    - [Issues with my current systems](#issues-with-my-current-systems)
 - [Table of Contents](#table-of-contents)
   - [Basic Outline](#basic-outline)
   - [Components](#components)
@@ -248,8 +310,10 @@ Size Constraints.
 
 Open question about what requirements there are regarding DSGVO
 
+Write some kind of implementatin guide for the IDP and a service. (What things should be implemented in what order and what should be considered)
 
 Make Services able to automatically allow all accounts from an IDP?
+
 
 
 25.3 screenshots 
