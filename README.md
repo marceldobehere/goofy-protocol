@@ -1,6 +1,52 @@
 # Goofy Protocol (WIP)
 A silly protocol / architecure spec to make goofy decentralized and federated systems kinda.
 
+## Notes
+This is still very WIP.
+
+Currently I am working on this outline and the IDP Specs.
+
+I will then write the basic specs for services and also work on the code examples (which are all empty rn)
+
+Once all that is done ill try to write somewhat detailed specs for Goofy Chat 3 and Goofy Media 2.
+
+And once I got some actual code I will link the repositories and host some instances with the stuff so its actually usable!
+
+But this all will take quite a while. (Writing the specs and outline alone takes ages)
+
+# Table of Contents
+- [Goofy Protocol (WIP)](#goofy-protocol-wip)
+  - [Notes](#notes)
+- [Table of Contents](#table-of-contents)
+  - [Basic Outline](#basic-outline)
+  - [Components](#components)
+    - [Users](#users)
+    - [IDP](#idp)
+    - [Services](#services)
+  - [Simplified Example Processes](#simplified-example-processes)
+    - [Registering a Base identity](#registering-a-base-identity)
+    - [Creating a Service Identity](#creating-a-service-identity)
+    - [Joining a Service](#joining-a-service)
+    - [Login to a Service](#login-to-a-service)
+  - [Definitions](#definitions)
+    - [IDP](#idp-1)
+    - [Base Identity](#base-identity)
+    - [Service Identity](#service-identity)
+    - [Account](#account)
+    - [Handle](#handle)
+  - [Structures](#structures)
+    - [Handle](#handle-1)
+    - [Identity](#identity)
+  - [Other things](#other-things)
+    - [Handle generation](#handle-generation)
+    - [Crypto Details](#crypto-details)
+    - [Migrating an IDP](#migrating-an-idp)
+  - [Component Specs](#component-specs)
+  - [Example Service Specs](#example-service-specs)
+  - [Implementation Examples](#implementation-examples)
+- [Notes from Phone (copied)](#notes-from-phone-copied)
+
+
 
 ## Basic Outline
 
@@ -40,8 +86,9 @@ They can be anything, from simple chat apps, mailing systems, a shared canvas or
 
 Services can be singular centralized things or federalized and decentralized instances spread out through the whole internet.
 
-Services can store data in their own places, but they can also store user data at the IDP Servers of the respective users.
+Services can store data in their own places, but they can also store user data at the IDP Servers of the respective users. When storing data on the IDP it should be encrypted to avoid tampering by the user or IDP administrator, unless the data is not important. Please consider that data can be viewed modified or deleted by the user / admins, so the service should always check the validity!
 
+Services have a handle and cryptographic keypair for authentication with the IDP.
 
 Ideally, services have a open-source and statically hosted Frontend/Client application to use it. And that Frontend should be compatible with all instances of the service running.
 
@@ -173,3 +220,55 @@ More Info [here](./details/handles.md).
 
 ## Implementation Examples
 Examples for important parts can be found [here](./code_examples/java/). They will mainly be in Java for now, later also Javascript with corresponding Libraries/APIs.
+
+
+
+
+
+
+
+# Notes from Phone (copied)
+
+IDPs should have some default endpoint
+* `/info` that shows the version and that it is infact an IDP server
+* `/contact` which has information to contact the administrators of the thing
+* `/report` to report any kind of problematic content or issues
+
+
+IDP allow checking if a handle belongs to the IDP
+
+
+Services should have some default endpoint
+* `/info` that shows the version and that it is infact a service and what kind
+* `/identity` which shows the public key / handle of the service
+* `/contact` which has information to contact the administrators of the thing
+* `/report` to report any kind of problematic content
+
+Size Constraints.
+
+Open question about what requirements there are regarding DSGVO
+
+
+Make Services able to automatically allow all accounts from an IDP?
+
+
+25.3 screenshots 
+
+
+Idp per handle public dictionary of services and domains "goofy media: "https://...", mqybe api to edit this so u can add ut easily 
+
+
+API for idp storage ahve warmings and errors whwn storage quota high/exceeded 
+
+Global api for idp, services to update information for handle (eg when mpving)
+post /uödate-handle-info -> new domain, etc, 
+
+Idpmstorage several maps with string keys and string results, ideally AES encrypted
+Maybe a signature field for each entry or for the global table state? (Or maybe not, idk)
+Simple queries but what about fields?
+Think abt what would be useful for goofy media and chat and ordering/sorting 
+
+
+global registry where u can enter a handle and u get the public key and most recent server location + maybe services? 
+
+Moderation so admins can deletr media that is not supposed to be there and delete users and change quotas etc 
