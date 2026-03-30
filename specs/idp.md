@@ -74,6 +74,8 @@ These are still very WIP.
     - [DSGVO and such](#dsgvo-and-such)
       - [Get Complete Account Export](#get-complete-account-export)
       - [Delete Account and all Data](#delete-account-and-all-data)
+      - [Deactive Handle or so](#deactive-handle-or-so)
+      - [Move Handle to different IDP or so](#move-handle-to-different-idp-or-so)
     - [Account Information](#account-information)
       - [Get Storage Details](#get-storage-details)
       - [Get Storage Quotas](#get-storage-quotas)
@@ -358,6 +360,9 @@ These endpoints should be signed by the user. If someone without a signature wan
 
 #### Delete Account and all Data
 
+#### Deactive Handle or so
+
+#### Move Handle to different IDP or so
 
 
 ### Account Information

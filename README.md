@@ -336,3 +336,5 @@ Think abt what would be useful for goofy media and chat and ordering/sorting
 global registry where u can enter a handle and u get the public key and most recent server location + maybe services? 
 
 Moderation so admins can deletr media that is not supposed to be there and delete users and change quotas etc 
+
+Look into which symmetric and asymmetric algos should be allowed and how to future proof it and also account deactivation or something
