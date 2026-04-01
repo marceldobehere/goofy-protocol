@@ -69,6 +69,7 @@ I want federation and communication between different services or services with 
 Additionally I want to lay out some specs so that there can be independent implementation that can still work together and have the important things standardized & have examples.
 
 
+Basically this protocol aims to be a general system for Services to have identity management, signatures, federation and data storage taken care of and make secure services.
 
 
 
@@ -338,3 +339,12 @@ global registry where u can enter a handle and u get the public key and most rec
 Moderation so admins can deletr media that is not supposed to be there and delete users and change quotas etc 
 
 Look into which symmetric and asymmetric algos should be allowed and how to future proof it and also account deactivation or something
+
+https://myitbasics.com/post-quantum-algorithms-ml-kem-ml-dsa-guide/
+https://stackoverflow.com/questions/78945143/how-to-use-ml-kem-kyber-for-encrypting-data-using-publickey-and-decrypting-data
+
+https://github.com/sokpheng001/Quantum-Resistant-Cryptography-in-Java-24/tree/master
+
+https://archive.openssl-conference.org/2025/presentations/David_Hook_OpenSSL2025_-_BC_and_a_Post-Quantum_Future.pdf
+
+https://github.com/bcgit/bc-java/issues/1969

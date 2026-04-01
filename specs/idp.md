@@ -76,6 +76,7 @@ These are still very WIP.
       - [Delete Account and all Data](#delete-account-and-all-data)
       - [Deactive Handle or so](#deactive-handle-or-so)
       - [Move Handle to different IDP or so](#move-handle-to-different-idp-or-so)
+      - [Import Export of different IDP?](#import-export-of-different-idp)
     - [Account Information](#account-information)
       - [Get Storage Details](#get-storage-details)
       - [Get Storage Quotas](#get-storage-quotas)
@@ -363,6 +364,13 @@ These endpoints should be signed by the user. If someone without a signature wan
 #### Deactive Handle or so
 
 #### Move Handle to different IDP or so
+
+#### Import Export of different IDP?
+If you want to move your data to a different IDP you can export it and register somewhere else and import it there hopefully.
+
+Can also make the current IDP point to the new one
+
+Need more details as to like how itll work and with the base identity
 
 
 ### Account Information
