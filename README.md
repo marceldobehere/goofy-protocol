@@ -348,3 +348,10 @@ https://github.com/sokpheng001/Quantum-Resistant-Cryptography-in-Java-24/tree/ma
 https://archive.openssl-conference.org/2025/presentations/David_Hook_OpenSSL2025_-_BC_and_a_Post-Quantum_Future.pdf
 
 https://github.com/bcgit/bc-java/issues/1969
+
+
+ML-KEM for JS stuff
+
+https://github.com/dchest/mlkem-wasm
+
+https://dchest.github.io/mlkem-wasm/
