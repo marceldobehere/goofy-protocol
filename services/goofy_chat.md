@@ -51,3 +51,8 @@ Report api endpoibts for idp + services
 
 Treat file uploads differently?
 Store chat messages?
+
+
+Look into Backwards and Forwards Secrecy
+
+Maybe look into signal sealed-sender messages? Not sure if i can do that easily with my architecture without allowing spam 
