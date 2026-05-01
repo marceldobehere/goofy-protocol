@@ -13,10 +13,9 @@ These are still very WIP.
       - [Info](#info)
       - [Contact](#contact)
       - [Report](#report)
-      - [A](#a)
+      - [Public Handle / Key](#public-handle--key)
     - [Verification / User Lookup](#verification--user-lookup)
       - [Handle Lookup](#handle-lookup)
-      - [A](#a-1)
     - [Registration (Base Identity / Account)](#registration-base-identity--account)
       - [Check Registrations Allowed](#check-registrations-allowed)
       - [Contact](#contact-1)
@@ -26,24 +25,31 @@ These are still very WIP.
     - [Encrypted Password/Keypair Storage (Base Identity / Account)](#encrypted-passwordkeypair-storage-base-identity--account)
       - [Get Storage Entry for Username](#get-storage-entry-for-username)
       - [Post Storage Entry for Username](#post-storage-entry-for-username)
+      - [Delete Storage Entry for Username](#delete-storage-entry-for-username)
     - [Encrypted (Service) Identity Storage](#encrypted-service-identity-storage)
       - [Get All Identities](#get-all-identities)
       - [Get Specific Identity](#get-specific-identity)
-      - [Create/Store/Update Identity](#createstoreupdate-identity)
+      - [Create/Update Identity](#createupdate-identity)
+      - [Delete Identity](#delete-identity)
     - [Global Handle Information](#global-handle-information)
       - [Get Public Data](#get-public-data)
       - [Post Public Data](#post-public-data)
       - [Get Private Data](#get-private-data)
       - [Post Private Data](#post-private-data)
     - [Service Entry Configuration](#service-entry-configuration)
-      - [Get Service Entries for Handle](#get-service-entries-for-handle)
+      - [Get Service Entries for Handle/User Identity](#get-service-entries-for-handleuser-identity)
       - [Get Service Entry Details](#get-service-entry-details)
       - [Create Service Entry](#create-service-entry)
       - [Update Service Entry](#update-service-entry)
       - [Delete Service Entry](#delete-service-entry)
-    - [Service Storage Configuration](#service-storage-configuration)
-      - [A](#a-2)
-    - [Service Access](#service-access)
+    - [Service Data Access Configuration](#service-data-access-configuration)
+      - [Get Total Quota Stats](#get-total-quota-stats)
+      - [Get Table Access](#get-table-access)
+      - [Set Table Access](#set-table-access)
+      - [Get Bucket Access](#get-bucket-access)
+      - [Set Bucket Access](#set-bucket-access)
+    - [External Service Access](#external-service-access)
+      - [Get Service name](#get-service-name)
       - [(REDIRECT) Add Service Access to Handle](#redirect-add-service-access-to-handle)
       - [(REDIRECT) Get Service Login Credentials / Keypair](#redirect-get-service-login-credentials--keypair)
     - [Service Table Access](#service-table-access)
@@ -51,6 +57,7 @@ These are still very WIP.
       - [Get Tables Quota](#get-tables-quota)
       - [Get Table](#get-table)
       - [Create Table](#create-table)
+      - [Set Table Visibility](#set-table-visibility)
       - [Delete Table](#delete-table)
       - [Locking a Table](#locking-a-table)
       - [Unlocking a Table](#unlocking-a-table)
@@ -65,13 +72,14 @@ These are still very WIP.
       - [Get Buckets Quota](#get-buckets-quota)
       - [Get Bucket](#get-bucket)
       - [Create Bucket](#create-bucket)
+      - [Set Bucket Visibility](#set-bucket-visibility)
       - [Delete Bucket](#delete-bucket)
       - [Get Entries for Bucket](#get-entries-for-bucket)
       - [Add Entry to Bucket](#add-entry-to-bucket)
       - [Get Entry Info from Bucket](#get-entry-info-from-bucket)
       - [Get Entry from Bucket](#get-entry-from-bucket)
       - [Delete Entry from Bucket](#delete-entry-from-bucket)
-    - [DSGVO and such](#dsgvo-and-such)
+    - [DSGVO / GDPR](#dsgvo--gdpr)
       - [Get Complete Account Export](#get-complete-account-export)
       - [Delete Account and all Data](#delete-account-and-all-data)
       - [Deactive Handle or so](#deactive-handle-or-so)
@@ -80,7 +88,7 @@ These are still very WIP.
     - [Account Information](#account-information)
       - [Get Storage Details](#get-storage-details)
       - [Get Storage Quotas](#get-storage-quotas)
-      - [A](#a-3)
+      - [A](#a)
   - [Admin API](#admin-api)
     - [General](#general-1)
       - [Get Contact Requests](#get-contact-requests)
@@ -99,15 +107,15 @@ These are still very WIP.
       - [Update Registration Code Request](#update-registration-code-request)
       - [Delete Registration Code Request](#delete-registration-code-request)
     - [User Management](#user-management)
-      - [A](#a-4)
+      - [A](#a-1)
     - [Encrypted Password/Keypair Storage Management](#encrypted-passwordkeypair-storage-management)
-      - [A](#a-5)
+      - [A](#a-2)
     - [User Service Management](#user-service-management)
-      - [A](#a-6)
+      - [A](#a-3)
     - [User Service Table Management](#user-service-table-management)
-      - [A](#a-7)
+      - [A](#a-4)
     - [User Service Bucket Management](#user-service-bucket-management)
-      - [A](#a-8)
+      - [A](#a-5)
     - [User Storage Quota Management](#user-storage-quota-management)
       - [B](#b)
     - [Service Management](#service-management)
@@ -128,8 +136,10 @@ These are still very WIP.
 ## API
 
 ### General
+Endpoints for general stuff about the IDP.
 
 #### Info
+Returns information about the idp instance
 
 #### Contact
 These can be used publically but can also be signed by a user.
@@ -137,29 +147,32 @@ These can be used publically but can also be signed by a user.
 #### Report
 These can be used publically but can also be signed by a user.
 
-#### A
+#### Public Handle / Key
+Get the public handle / public key of the idp server itself
 
 
 ### Verification / User Lookup
+Endpoint(s) for getting information about a handle
 
 #### Handle Lookup
-Looking up the base / service identity using the handle and getting some basic information back. (Handle, Public Key, which IDP server it is on, etc,)
+Looking up the base / service identity using the handle and getting some basic information back. (Handle, Public Key, which IDP server it is on, etc, if its from the idp service?)
 
-#### A
 
 
 ### Registration (Base Identity / Account)
+Endpoints for registering new profiles
 
 #### Check Registrations Allowed
 Checks if the IDP even allows registrations currently
 
 #### Contact
-A way to contact if you want a register code. If register codes are automatically sent by email or something, this can be optional. 
+A way to contact if you want a register code. If register codes are automatically sent by email or something, this can be skipped.  
 
 #### Create Registration
 This endpoint is used to create a new account. It should be a signed request using the generated keypair and include the public key and handle of the registering user. It should also include the registration code/token/key/etc.
 
 ### Login/Check (Base Identity / Account)
+Endpoint(s) to get data for signed request and also as a check if the signature is working. 
 
 #### Get User Info
 This signed request will return info about the user who sent it. This can be used to check whether the signing works, if the user is authenticated and if the user is an administrator.
@@ -177,12 +190,21 @@ It's intended for users to symmetrically encrypt their keypair with a password a
 The Entry should have a normal size constraint, maybe max 100KB.
 
 #### Get Storage Entry for Username
+Gets the Storage entry for a username or a 404 if it doesnt exist
+
 
 #### Post Storage Entry for Username
+Sets the Storage entry for a username, if the username is free.
+Request needs to be signed and a user can only have one username at once, if its a different one, then the old one will be deleted.
+
+
+#### Delete Storage Entry for Username
+Request needs to be signed.
+
 
 
 ### Encrypted (Service) Identity Storage
-Endpoints for storing and retrieving generated Identities. They will be stored encrypted
+Endpoints for storing and retrieving generated Identities. They will be stored encrypted. Of course only used by registered users.
 
 The Entries are symmetrically encrypted with a key.
 This key is stored alongside the entry but it is asymmetrically encrypted with the public key of the base identity, meaning only the user can decrypt/use them. 
@@ -192,12 +214,19 @@ The identity entries should have the handle and a custom name added to them whic
 The Entries should have a normal size constraint, maybe max 100KB. There should also be a maximum number of encrypted identities, but that depends on the IDP, I would say at minimum 20 should be good.
 
 #### Get All Identities
+This will return a list of all identities. Will only have custom names and notes and maybe handles.
 
 #### Get Specific Identity
+This will return all data for a single identity.
+The data should be used to be able to export the identity.
 
-#### Create/Store/Update Identity
+#### Create/Update Identity
+This will allow users to create/update identity entries for a custom name.
 
+You should be able to import an identity, ideally with all the data of the `Get Specific Identity` Endpoint.
 
+#### Delete Identity
+This will delete an identity entry for a custom name.
 
 
 ### Global Handle Information
@@ -210,6 +239,7 @@ Public Data for example should include a `services` key which has an object with
 
 #### Get Public Data
 
+
 #### Post Public Data
 
 
@@ -218,48 +248,80 @@ Public Data for example should include a `services` key which has an object with
 #### Post Private Data
 
 
-### Service Entry Configuration
-Creating an entry which contains tables and buckets that can be accessed by a service using a handle. This should also support multiple handles having access to an entry. Should be differentiated between read-only and read/write.
 
-#### Get Service Entries for Handle
+
+### Service Entry Configuration
+Endpoints related to configuring Service Data Access Entries.
+
+A service can request to store data (in tables or data buckets) for a handle / user identity. This needs to be managed and configured. So users need to be able to create Entries for services with a unique service name, the service identity and then the actual data inside of them and also quotas.
+
+This should also support multiple handles having access to an entry. Should be differentiated between read-only and read/write.
+
+#### Get Service Entries for Handle/User Identity
 
 #### Get Service Entry Details
 
 #### Create Service Entry
+Important is to define the service identity/handle, user/identity and the service name, which needs to be unique and is used for the local scope. Ideally a base service name + a random number + Also the Service URL ideally.
 
 #### Update Service Entry
 Set Quotas for Storage and maybe Table count
 Two distinct quotas, binary content and table data!
-Also updating access levels per handle
+Also updating access levels per handle.
+Also update the service name.
 
 #### Delete Service Entry
 
 
 
-
-
-
-### Service Storage Configuration
+### Service Data Access Configuration
 Being able to list, view and modify the tables / data inside.
-Two distinct quotas, binary content and table data!
 
 How much storage can be used / is used, and how many tables can be created / have been created. Also how many columns/rows a table can have.
 
 Also being able to set the visibility of data (either private or public or select services maybe?)
 
-#### A
+
+The finding Tables/Buckets + direct manipulation of Table/Bucket data + Visibility Status can use the API inside the `Service Table Access` Section by using the global scope and correct Service name.
+
+#### Get Total Quota Stats
+Aggregation of Table and Bucket Stats
+
+#### Get Table Access
+
+#### Set Table Access
+Manage which handles can access the table
+
+#### Get Bucket Access
+
+#### Set Bucket Access
+Manage which handles can access the table and if its read/write or readonly
 
 
 
 
 
-### Service Access
-These Endpoints get used by services 
+
+
+### External Service Access
+These Endpoints get used by services.
+
+Basically for a user there are two things:
+* Services connected to a identity (Used for login)
+  * Basically just a list of services and identities
+  * Useful so you can "autofill" the "login" credentials for a service
+* Service Data Access, so giving a service permission to create/read/write tables and buckets. Each Service Data Access will have the service and the handle and then a local scope name, 
+
+
+#### Get Service name
+
 
 #### (REDIRECT) Add Service Access to Handle
 This should be a URL that services can link users to which should redirect users to a (ideally) Frontend Page of the IDP where a logged in user can add the service (defined in the query parameter) to a handle.
 
 This is there to make the userflow easier.
+
+This can be used to setup Service Entry / Basic Data Access with Tables / Buckets but also without, just to have the service be "connected" with the user/identity so that it can be used to login.
 
 
 #### (REDIRECT) Get Service Login Credentials / Keypair
@@ -272,9 +334,13 @@ This is there to make the userflow easier.
 
 ### Service Table Access
 These Endpoints get used by services to access the tables.
+IMPORTANT, KEEP SCOPE IN MIND: EITHER LOCAL (Uses service name as a prefix) or GLOBAL (Uses absolute name, for example if a service wants to access data from a different service, for example a chat app server writing received messages to its table and the client reading the entries from the table and storing it in its own table)
+
+
 
 
 #### Get Tables
+Think about showing all tables depending on global or local scope.
 
 #### Get Tables Quota
 How much storage can be used / is used, and how many tables can be created / have been created. Also how many columns/rows a table can have.
@@ -282,9 +348,14 @@ How much storage can be used / is used, and how many tables can be created / hav
 #### Get Table
 Column Definitions and stuff
 How many entries, how much storage used, etc.
+Is the Table publically visible.
 
 #### Create Table
 Define Colums
+Define Visibility
+
+#### Set Table Visibility
+Basically is the Table only visible by handles with access or to everyone (private service data or public social media post entries)
 
 #### Delete Table
 
@@ -329,8 +400,13 @@ How much storage buckets can use and have used and how many buckets can be creat
 
 #### Get Bucket
 How many entries, how much storage used, etc.
+Is the Bucket publically visible.
 
 #### Create Bucket
+Define Visibility
+
+#### Set Bucket Visibility
+Basically is the Bucket only visible by handles with access or to everyone (private service data or public social media post entries)
 
 #### Delete Bucket
 
@@ -354,7 +430,7 @@ Get Raw Data from an Entry
 
 
 
-### DSGVO and such
+### DSGVO / GDPR
 These endpoints should be signed by the user. If someone without a signature wants something, they should use the public contact or report endpoint
 
 #### Get Complete Account Export
