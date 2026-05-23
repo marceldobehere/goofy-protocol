@@ -355,3 +355,28 @@ ML-KEM for JS stuff
 https://github.com/dchest/mlkem-wasm
 
 https://dchest.github.io/mlkem-wasm/
+
+
+
+Make goofy forum as reddit alternative
+and maybe goofy video as youtube or so idk 
+
+
+
+Goofy Protocol Services should be used for
+* finding users (tags, post, random, etc.)
+  * potentially also friend requests?
+  * Careful about MITM issues? Would need to trust the Service
+* sending live data / webaockets (msgs)
+* notifications (chat app closed, i want notif)
+* business logic outside of clients (r/place)
+
+IDP offer a way to add custom ,essages (user can set access limit of who can send, how many, how big and its just a string/json object and the user/app/service can read it)
+for example for incoming messages, or friend requests, or comments or new posts? One per identity or several? (Maybe have tables, buckets, lists?) 
+
+Add and get / get&remove should be atomic & threadsafe 
+
+
+
+
+

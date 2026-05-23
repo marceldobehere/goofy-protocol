@@ -56,3 +56,6 @@ Store chat messages?
 Look into Backwards and Forwards Secrecy
 
 Maybe look into signal sealed-sender messages? Not sure if i can do that easily with my architecture without allowing spam 
+
+
+Maybe mitm chwck by standardizes OTP emojis (mix of matrix emojo verification and otp codes which u can always see/check and yes) 

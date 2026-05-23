@@ -336,7 +336,7 @@ This is there to make the userflow easier.
 These Endpoints get used by services to access the tables.
 IMPORTANT, KEEP SCOPE IN MIND: EITHER LOCAL (Uses service name as a prefix) or GLOBAL (Uses absolute name, for example if a service wants to access data from a different service, for example a chat app server writing received messages to its table and the client reading the entries from the table and storing it in its own table)
 
-
+Maybe look into MultiTenancy for Java/Databases or something for implementing it
 
 
 #### Get Tables
@@ -387,6 +387,8 @@ Unlocking a table can only be done by having the lock token. Otherwise it will u
 
 #### Query Table Entries
 Some kind of way to query tables with specific column constraints and also define what data/columns you want. should be basic but make life easier and increase performance.
+
+Idp for queries maybe yoink some stuff from drizzle orm? Select([])from().where().sort() etc 
 
 
 
