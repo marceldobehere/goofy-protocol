@@ -16,6 +16,7 @@ These are still very WIP.
       - [Public Handle / Key](#public-handle--key)
     - [Verification / User Lookup](#verification--user-lookup)
       - [Handle Lookup](#handle-lookup)
+      - [Set/Update (Ext.) Handle Information](#setupdate-ext-handle-information)
     - [Registration (Base Identity / Account)](#registration-base-identity--account)
       - [Check Registrations Allowed](#check-registrations-allowed)
       - [Contact](#contact-1)
@@ -154,10 +155,15 @@ Get the public handle / public key of the idp server itself
 ### Verification / User Lookup
 Endpoint(s) for getting information about a handle
 
+TODO: Make sure that all relevant endpoints notify when a handle has been moved
+
 #### Handle Lookup
 Looking up the base / service identity using the handle and getting some basic information back. (Handle, Public Key, which IDP server it is on, etc, if its from the idp service?)
 
+#### Set/Update (Ext.) Handle Information
+TODO: Finalize, and update other idp endpoints (data/service related)
 
+Users from other IDPs or users that move their account should be able to update the idp server url and other things for their handle, this is important because of the implicit nature of the handles and services having the old idp cached.
 
 ### Registration (Base Identity / Account)
 Endpoints for registering new profiles
