@@ -379,4 +379,5 @@ Add and get / get&remove should be atomic & threadsafe
 
 
 
-
+For Social Services Timestamps could be an issue, look into Time Stamp Authorities, e.g. https://www.freetsa.org/index_en.php
+(Would be good for Goofy Media 2), (should be kind of optional but have a warning if a tsa is not attached and somehow verify it against the tsa)
