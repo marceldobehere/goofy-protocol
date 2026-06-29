@@ -84,7 +84,7 @@ Basically this protocol aims to be a general system for Services to have identit
   - [Basic Outline](#basic-outline)
   - [Components](#components)
     - [Users](#users)
-    - [IDP](#idp)
+    - [IDP / Federated Identity Server (FIS)](#idp--federated-identity-server-fis)
     - [Services](#services)
   - [Simplified Example Processes](#simplified-example-processes)
     - [Registering a Base identity](#registering-a-base-identity)
@@ -92,7 +92,7 @@ Basically this protocol aims to be a general system for Services to have identit
     - [Joining a Service](#joining-a-service)
     - [Login to a Service](#login-to-a-service)
   - [Definitions](#definitions)
-    - [IDP](#idp-1)
+    - [IDP](#idp)
     - [Base Identity](#base-identity)
     - [Service Identity](#service-identity)
     - [Account](#account)
@@ -132,7 +132,7 @@ Normal people like you and me. (Could include bots) Users want to interact with 
 
 Services require a service identity and (most times) an associated IDP to register an account and to be used.
 
-### IDP
+### IDP / Federated Identity Server (FIS)
 A server which manages/provides identities to users and offers some storage for services.
 
 Users can register a base identity on an IDP and then create service identities for the services they want to use. Each service identity has a unique handle which is used.
